@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    api fileTree(dir: "libs", include: ["*.jar"])
+
+    api support.app_compat
+    api support.constraint_layout
+    api support.recyclerview
+    api support.design
+
+    api okhttp.ohttp3
+    api okhttp.okhttp3_logging_interceptor
+
+    api retrofit.runtime
+    api retrofit.gson
+    api retrofit.adapter_rxjava2
+
+    api lifecycle.runtime
+    api lifecycle.extensions
+    api lifecycle.java8
+    api lifecycle.compiler
+
+    api room.runtime
+    api room.compiler
+    api room.rxjava2
+    api room.testing
+
+    //api rx.rxjava2
+    api rx.rx_android
+
+    api espresso.junit
+    androidTestApi espresso.ext_junit
+    androidTestApi espresso.espresso_core
+}
